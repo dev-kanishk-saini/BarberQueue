@@ -1,0 +1,30 @@
+{
+  "name": "barberqueue",
+  "version": "1.0.0",
+  "description": "This is the backend server of the BarberQueue app.",
+  "keywords": [
+    "user",
+    "salon",
+    "appointment",
+    "bookings"
+  ],
+  "homepage": "https://github.com/dev-kanishk-saini/BarberQueue#readme",
+  "bugs": {
+    "url": "https://github.com/dev-kanishk-saini/BarberQueue/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-kanishk-saini/BarberQueue.git"
+  },
+  "license": "ISC",
+  "author": "Kanishk Saini",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}
