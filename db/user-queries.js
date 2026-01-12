@@ -26,7 +26,7 @@ export async function createUser({
   if (!data.user) {
     return {
       message: 'Signup successful. Please verify your email.'
-      
+
     };
   }
 
@@ -99,3 +99,28 @@ export async function createAdminUser({
     message: 'Admin user created. Verification email sent.'
   };
 }
+
+
+export async function userLogin({email,password}){
+   const { data, error } = await supabase.auth.signInWithPassword({
+  email,
+  password,
+});
+
+if(error){
+  throw new Error(error.message);
+}
+
+return data;  
+}
+
+export async function userLogout(token){
+      const { error } = await supabase.auth.signOut(token);
+      console.log("Logout error:", error);
+     return { error };
+};
+
+
+
+
+
