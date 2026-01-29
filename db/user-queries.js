@@ -7,13 +7,15 @@ export async function createUser({
   email,
   role,
   phone,
-  password
+  password,
+  address,
+  pin
 }) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: 'http://localhost:8000/verify-email'
+      emailRedirectTo: 'http://localhost:3000/home'
       // OR your production URL
     }
   });
@@ -31,14 +33,17 @@ export async function createUser({
   }
 
   const { error: insertError } = await supabase
-    .from('users')
+    .from('customers')
     .insert({
       id: data.user.id,
       name,
       gender,
       role,
       phone,
-      email
+      email,
+      password,
+      address,
+      pin
     });
 
   if (insertError) {
@@ -106,6 +111,7 @@ export async function userLogin({email,password}){
   email,
   password,
 });
+console.log(data);
 
 if(error){
   throw new Error(error.message);

@@ -5,3 +5,4 @@ dotenv.config();
 
 // Create a single supabase client for interacting with your database
 export const supabase = createClient(process.env.DATABASEURL, process.env.API_KEY);
+export const supabaseAdmin = createClient(process.env.DATABASEURL, process.env.ADMIN_API_KEY);

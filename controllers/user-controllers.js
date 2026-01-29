@@ -2,7 +2,8 @@ import { createUser , createAdminUser , userLogin, userLogout } from '../db/user
 
 export const createuser = async (req, res, next) => {
   try {
-    const { name, gender,email,role , phone, password } = req.body;
+    const { name, gender,email,role , phone, password , address , pin } = req.body;
+    console.log({ name, gender,email,role, phone, password , address , pin});
 
     if (!name || !email || !password || !role) {
       return res.status(400).json({
@@ -13,7 +14,7 @@ export const createuser = async (req, res, next) => {
     if(role === "admin"){
           user = await createAdminUser({ name, gender,email,role, phone, password });
     }else{
-       user = await createUser({ name, gender,email,role, phone, password });
+       user = await createUser({ name, gender,email,role, phone, password , address , pin });
        
     }
    
@@ -56,6 +57,7 @@ export const loginUser = async (req, res, next) => {
       });
    } catch (error) {
     next(error);
+
    }
 }   
 
@@ -85,3 +87,7 @@ export const logoutUser = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const getUserProfile = async (req, res, next) => {};
+export const updateUserProfile = async (req, res, next) => {};
