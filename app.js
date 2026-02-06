@@ -1,11 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import userRoutes from './routes/user-routes.js';
+import salonRoutes from "./routes/salon-routes.js"
 
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));  
 app.use(express.json());
+
+ 
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Barber Queue API');
@@ -15,10 +18,10 @@ app.get('/api/v1/health', (req, res) => {
   res.send('Health Check: OK');
 }); 
 
-app.use('/api/v1/user', userRoutes);
-//app.use('/api/v1/salons', salonRoutes);
-//app.use('/api/v1/appointments', userRoutes);
-//app.use('/api/v1/user', userRoutes);
+ app.use('/api/v1/user', userRoutes);
+ app.use('/api/v1/salons', salonRoutes);
+// app.use('/api/v1/appointments', userRoutes);
+// //app.use('/api/v1/user', userRoutes);
 
 
 
