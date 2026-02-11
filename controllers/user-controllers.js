@@ -117,6 +117,29 @@ import { User , saveUser , updateUser , getUser, deleteUser } from "../models/us
       }
 };
 
+const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    console.log("login user attempt: ", user);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      })
+    } else {
+      return res.status(200).json({
+        message: "User found",
+        user: user
+      })
+    }
+  } catch (error) {
+    res.status(500).json({ 
+      message: "Error logging in user",
+      error: error.message
+    })
+  }
+}
+
 const getUserProfile = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -181,4 +204,4 @@ const deleteUserProfile = async (req, res, next) => {
 
 
 
-export { createUser, getUserProfile, updateUserProfile, deleteUserProfile };
+export { createUser, loginUser, getUserProfile, updateUserProfile, deleteUserProfile };
